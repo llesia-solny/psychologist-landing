@@ -1,1 +1,294 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*  BASE */
+boby {
+    font-family: 'Inter', sans-serif;
+    color: #222;
+    background-color: #fafafa;
+    line-height: 1.6;
+}
+
+section {
+    padding: 80px 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 600 px;
+    margin-bottom: 16px;
+}
+
+p {
+    margin-bottom: 12px;
+
+}
+
+button {
+     font-family: inherit;
+     cursor: pointer;
+
+}
+/* HERO */
+
+.hero {
+    min-height : 100vh;
+    padding: 100px 20px;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f2ede8;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 32px;
+    color: #555;
+}
+
+.hero button {
+    padding: 14px;
+    font-size: 16px;
+    background-color: #8b6f5a;
+    color: #fff;
+    border: none;
+    border-redius: 8px;
+    transition: background 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #735a49;
+}
+
+/* PROBLEMS */
+.problems {
+    background-color: #fff;
+    text-align: center;
+}
+
+.problems h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+/* контейнер карточек */
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*карточка */
+.card {
+    background-color: #f7f4f1;
+    padding: 30px 20px;
+    border-radius: 12px;
+    width: 260px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+}
+/* REVIEWS */
+.reviews {
+    background-color: #fff;
+    text-align:center;
+
+}
+
+.reviews h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.review{
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 25px 20px;
+    background-color: #f7f4f1;
+    border-radius: 12px;
+}
+
+review p {
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+.review span {
+    font-size: 14px;
+    color: #555;
+}
+
+/* CONTACT FORM */
+.contact {
+    background-color: f2ede8;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.contact form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f7f4f1;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.contact input {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+
+}
+
+.contact input:focus {
+    outline: none;
+    border-color: #8b6f5a;
+}
+
+.contact button {
+    padding: 14px;
+    font-size: 16px;
+    background-color: #8b6f5a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: #735a49;
+}
+/* PROCESS - unified style */
+.process {
+    background-color: #f7f4f1;
+    text-align: center;
+}
+
+.process h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.step {
+  background-color: #ffffff;
+  padding: 30px 24px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.step h3  {
+    margin-bottom: 12px;
+    color: #8b6f5a;
+
+}
+
+.step p {
+    font-size: 14px;
+    color: #555;
+}
+/*FOOTER */
+footer {
+    background-color: #f2ede8;
+    text-align center;
+    padding: 30px 20px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #555;
+}
+/* GLOBAL POLISH */
+section {
+    scroll-margin-top: 60px;
+}
+button {
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+/*hero под мобилку*/
+@media (max-width: 768px) {
+    .hero{
+        padding: 80px 20px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+    .hero p {
+        font-size:16px;
+    }
+}
+/*карточки*/
+@media (max-width: 768px) {
+
+  .cards,
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card,
+  .step {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+/*отзывы*/
+@media (max-width: 768px) {
+
+  .review {
+    padding: 20px;
+  }
+
+}
+
+/*форма заявок*/
+@media (max-width: 768px) {
+
+  .contact form {
+    padding: 20px;
+  }
+
+  .contact input,
+  .contact button {
+    font-size: 16px;
+  }
+
+}
+
+
 
