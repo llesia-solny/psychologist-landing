@@ -8,14 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <title>Психолог Екатерина Волкова</title>
+  <meta name="description" content="Онлайн-консультации с психологом">
 </head>
 <body>
 
-  <!-- HERO -->
+   <!-- HERO -->
   <header class="hero">
     <h1>Онлайн-консультации с психологом</h1>
     <p>Помогаю справиться с тревожностью, выгоранием и сложными жизненными ситуациями</p>
-    <button>Записаться на консультацию</button>
+    <a href="#contact-form" class="btn">Записаться на консультацию</a>
   </header>
 
   <!-- ABOUT -->
@@ -31,24 +32,24 @@
   <!-- PROBLEMS -->
   <section class="problems">
     <h2>С какими запросами я работаю</h2>
-
     <div class="cards">
       <div class="card">
+        <img src="img/anxiety.jpg" alt="Тревожность">
         <h3>Тревожность</h3>
         <p>Постоянное напряжение, страхи, беспокойство</p>
       </div>
-
       <div class="card">
+        <img src="img/self-esteem.jpg" alt="Самооценка">
         <h3>Самооценка</h3>
         <p>Неуверенность в себе и своих решениях</p>
       </div>
-
       <div class="card">
+        <img src="img/relationships.jpg" alt="Отношения">
         <h3>Отношения</h3>
         <p>Сложности в паре или в общении с близкими</p>
       </div>
-
       <div class="card">
+        <img src="img/burnout.jpg" alt="Выгорание">
         <h3>Выгорание</h3>
         <p>Усталость, апатия, потеря мотивации</p>
       </div>
@@ -58,18 +59,15 @@
   <!-- PROCESS -->
   <section class="process">
     <h2>Как проходит консультация</h2>
-
     <div class="steps">
       <div class="step">
         <h3>1. Запись</h3>
         <p>Вы оставляете заявку и мы согласовываем удобное время</p>
       </div>
-
       <div class="step">
         <h3>2. Консультация</h3>
         <p>Онлайн-встреча длительностью 60 минут</p>
       </div>
-
       <div class="step">
         <h3>3. Рекомендации</h3>
         <p>Вы получаете поддержку и практические шаги</p>
@@ -80,30 +78,23 @@
   <!-- REVIEWS -->
   <section class="reviews">
     <h2>Отзывы клиентов</h2>
-
     <div class="review">
-      <p>
-        «После нескольких встреч стало гораздо спокойнее,
-        ушла постоянная тревога.»
-      </p>
+      <p>«После нескольких встреч стало гораздо спокойнее, ушла постоянная тревога.»</p>
       <span>Анна, 27 лет</span>
     </div>
-
     <div class="review">
-      <p>
-        «Помогла разобраться в себе и выйти из эмоционального выгорания.»
-      </p>
+      <p>«Помогла разобраться в себе и выйти из эмоционального выгорания.»</p>
       <span>Мария, 34 года</span>
     </div>
   </section>
 
   <!-- FORM -->
-  <section class="contact">
+  <section id="contact-form" class="contact">
     <h2>Записаться на консультацию</h2>
-
-    <form>
-      <input type="text" placeholder="Ваше имя">
-      <input type="text" placeholder="Телефон или Telegram">
+    <form action="https://formspree.io/f/mrebwvkv" method="POST">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="text" name="contact" placeholder="Телефон или Telegram" required>
+      <textarea name="message" placeholder="Сообщение" required></textarea>
       <button type="submit">Отправить заявку</button>
     </form>
   </section>
@@ -113,6 +104,33 @@
     <p>Екатерина Волкова © 2025</p>
     <p>Телефон / Telegram: +7 (999) 123-45-67</p>
   </footer>
+
+  <!-- JS для плавного скролла -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+  <script>
+  const form = document.getElementById('contactForm');
+
+  form.addEventListener('submit', function(e) {
+    // Можно оставить стандартное поведение отправки
+    // e.preventDefault(); // если нужно использовать fetch/ajax вместо отправки напрямую
+
+    // Через небольшой timeout очищаем форму после отправки
+    setTimeout(() => {
+      form.reset(); // очищает все поля
+      alert('Заявка отправлена!'); // опционально уведомление
+    }, 500); // 0.5 секунды задержка, чтобы отправка успела пройти
+  });
+</script>
 
 </body>
 </html>
