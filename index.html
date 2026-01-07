@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- HERO -->
+   <!-- HERO -->
   <header class="hero">
     <h1>Онлайн-консультации с психологом</h1>
     <p>Помогаю справиться с тревожностью, выгоранием и сложными жизненными ситуациями</p>
@@ -91,12 +91,11 @@
   <!-- FORM -->
   <section id="contact-form" class="contact">
     <h2>Записаться на консультацию</h2>
-    <form id="contactForm" action="https://formspree.io/f/mrebwvkv" method="POST">
+    <form action="https://formspree.io/f/mrebwvkv" method="POST">
       <input type="text" name="name" placeholder="Ваше имя" required>
       <input type="text" name="contact" placeholder="Телефон или Telegram" required>
       <textarea name="message" placeholder="Сообщение" required></textarea>
       <button type="submit">Отправить заявку</button>
-      <p id="form-status" class="form-status"></p>
     </form>
   </section>
 
@@ -118,49 +117,20 @@
       });
     });
   </script>
-
-  <!-- JS для формы с Formspree -->
   <script>
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('form-status');
-    const button = form.querySelector('button[type="submit"]');
+  const form = document.getElementById('contactForm');
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+  form.addEventListener('submit', function(e) {
+    // Можно оставить стандартное поведение отправки
+    // e.preventDefault(); // если нужно использовать fetch/ajax вместо отправки напрямую
 
-      const formData = new FormData(form);
-
-      button.disabled = true;
-      button.textContent = "Отправка...";
-
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          status.innerHTML = `<strong>Спасибо за заявку!</strong><br>Я свяжусь с вами в ближайшее время 💬`;
-          status.style.color = "#3b7a57";
-          form.reset();
-          button.textContent = "Отправлено";
-        } else {
-          response.json().then(data => {
-            status.textContent = data.error || "Ошибка отправки ❌ Попробуйте позже";
-            status.style.color = "#a94442";
-            button.disabled = false;
-            button.textContent = "Отправить заявку";
-          });
-        }
-      })
-      .catch(() => {
-        status.textContent = "Ошибка отправки ❌ Попробуйте позже";
-        status.style.color = "#a94442";
-        button.disabled = false;
-        button.textContent = "Отправить заявку";
-      });
-    });
-  </script>
+    // Через небольшой timeout очищаем форму после отправки
+    setTimeout(() => {
+      form.reset(); // очищает все поля
+      alert('Заявка отправлена!'); // опционально уведомление
+    }, 500); // 0.5 секунды задержка, чтобы отправка успела пройти
+  });
+</script>
 
 </body>
 </html>
