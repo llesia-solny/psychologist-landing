@@ -91,7 +91,7 @@
   <!-- FORM -->
   <section id="contact-form" class="contact">
     <h2>Записаться на консультацию</h2>
-    <form action="https://formspree.io/f/mrebwvkv" method="POST">
+   <form id="contactForm">
       <input type="text" name="name" placeholder="Ваше имя" required>
       <input type="text" name="contact" placeholder="Телефон или Telegram" required>
       <textarea name="message" placeholder="Сообщение" required></textarea>
@@ -117,20 +117,48 @@
       });
     });
   </script>
+
+
   <script>
+  const TOKEN = "8484376853:AAFZeXHgKYeuUoRlgBEjSySWPucHWwNMPyc";
+  const CHAT_ID = "1015596173";
+
   const form = document.getElementById('contactForm');
 
-  form.addEventListener('submit', function(e) {
-    // Можно оставить стандартное поведение отправки
-    // e.preventDefault(); // если нужно использовать fetch/ajax вместо отправки напрямую
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    // Через небольшой timeout очищаем форму после отправки
-    setTimeout(() => {
-      form.reset(); // очищает все поля
-      alert('Заявка отправлена!'); // опционально уведомление
-    }, 500); // 0.5 секунды задержка, чтобы отправка успела пройти
+    const name = form.querySelector('input[name="name"]').value;
+    const contact = form.querySelector('input[name="contact"]').value;
+    const message = form.querySelector('textarea[name="message"]').value;
+
+    const text = `
+📩 Новая заявка с сайта
+👤 Имя: ${name}
+📞 Контакт: ${contact}
+💬 Сообщение: ${message}
+    `;
+
+    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: text
+      })
+    })
+    .then(() => {
+      form.reset();
+      alert('Заявка отправлена ✅');
+    })
+    .catch(() => {
+      alert('Ошибка отправки ❌');
+    });
   });
 </script>
+
 
 </body>
 </html>
