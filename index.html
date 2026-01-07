@@ -126,13 +126,26 @@
 
    const form = document.getElementById('contactForm');
   const status = document.getElementById('form-status');
+  const button = form.querySelector('button[type="submit"]');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name = form.querySelector('input[name="name"]').value;
-    const contact = form.querySelector('input[name="contact"]').value;
-    const message = form.querySelector('textarea[name="message"]').value;
+    // защита от повторного клика
+    if (button.disabled) return;
+
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const contact = form.querySelector('input[name="contact"]').value.trim();
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    if (!name || !contact || !message) {
+      status.textContent = "Пожалуйста, заполните все поля";
+      status.style.color = "#a94442";
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Отправка...";
 
     const text = `
 📩 Новая заявка с сайта
@@ -151,16 +164,21 @@
     })
     .then(() => {
       status.textContent = "Заявка отправлена ✅ Я скоро свяжусь с вами";
-      status.style.color = "#3b7a57"; // мягкий зелёный
+      status.style.color = "#3b7a57";
       form.reset();
+      button.textContent = "Отправлено";
     })
     .catch(() => {
       status.textContent = "Ошибка отправки ❌ Попробуйте позже";
       status.style.color = "#a94442";
+      button.disabled = false;
+      button.textContent = "Отправить заявку";
     });
+  });
   });
 </script>
 
 
 </body>
 </html>
+
