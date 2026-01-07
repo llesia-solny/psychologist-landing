@@ -200,3 +200,8 @@ footer {
     align-items: center;
   }
 }
+
+.form-status {
+  margin-top: 12px;
+  font-size: 14px;
+}
