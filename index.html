@@ -96,6 +96,7 @@
       <input type="text" name="contact" placeholder="Телефон или Telegram" required>
       <textarea name="message" placeholder="Сообщение" required></textarea>
       <button type="submit">Отправить заявку</button>
+      <p id="form-status" class="form-status"></p>
     </form>
   </section>
 
@@ -123,7 +124,8 @@
   const TOKEN = "8484376853:AAFZeXHgKYeuUoRlgBEjSySWPucHWwNMPyc";
   const CHAT_ID = "1015596173";
 
-  const form = document.getElementById('contactForm');
+   const form = document.getElementById('contactForm');
+  const status = document.getElementById('form-status');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -141,20 +143,20 @@
 
     fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: CHAT_ID,
         text: text
       })
     })
     .then(() => {
+      status.textContent = "Заявка отправлена ✅ Я скоро свяжусь с вами";
+      status.style.color = "#3b7a57"; // мягкий зелёный
       form.reset();
-      alert('Заявка отправлена ✅');
     })
     .catch(() => {
-      alert('Ошибка отправки ❌');
+      status.textContent = "Ошибка отправки ❌ Попробуйте позже";
+      status.style.color = "#a94442";
     });
   });
 </script>
